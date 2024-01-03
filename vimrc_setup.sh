@@ -14,8 +14,8 @@ else
     echo "Vimrc downloaded successfully."
 fi
 
-VIM80_DIR="/usr/share/vim/vim80"
-VIM90_DIR="/usr/share/vim/vim90"
+VIM80_DIR=/usr/share/vim/vim80
+VIM90_DIR=/usr/share/vim/vim90
 TARGET_DIR=""
 
 if [ -d "$VIM80_DIR" ]; then
@@ -28,19 +28,26 @@ fi
 if [ -z "$TARGET_DIR" ]; then
     echo "Vim directory not found. Skipping color scheme download."
 else
-    curl https://raw.githubusercontent.com/TheNiteCoder/mountaineer.vim/master/colors/mountaineer-grey.vim >> $TARGET_DIR/colors/mountaineer-grey.vim
-    if [ $? -eq 0 ]; then
-        echo "Theme mountaineer-grey downloaded successfully."
+    MG_VIM_PATH="$TARGET_DIR/colors/mountaineer-grey.vim"
+    if [ -f "$MG_VIM_PATH" ]; then
+        echo "Theme mountaineer-grey scheme already exists."
         sed -i 's/torte/mountaineer-grey/g' ~/.vimrc
         echo "Theme mountaineer-grey activated."
     else
-        echo "Failed to download theme mountaineer-grey."
+        curl https://raw.githubusercontent.com/TheNiteCoder/mountaineer.vim/master/colors/mountaineer-grey.vim >> "$MG_VIM_PATH"
+        if [ $? -eq 0 ]; then
+            echo "Theme mountaineer-grey downloaded successfully."
+            sed -i 's/torte/mountaineer-grey/g' ~/.vimrc
+            echo "Theme mountaineer-grey activated."
+        else
+            echo "Failed to download theme mountaineer-grey."
+        fi
     fi
 fi
 
 
 # Set up NerdTree
-NERDTREE_DIR="~/.vim/pack/vendor/pack/start/nerdtree"
+NERDTREE_DIR=~/.vim/pack/vendor/pack/start/nerdtree
 
 if [ -d "$NERDTREE_DIR" ]; then
     echo "NerdTree pack already exists."
