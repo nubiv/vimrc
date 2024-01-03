@@ -12,15 +12,15 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-VIM80_DIR = "/usr/share/vim/vim80"
-VIM90_DIR = "/usr/share/vim/vim90"
-TARGET_DIR = ""
+VIM80_DIR="/usr/share/vim/vim80"
+VIM90_DIR="/usr/share/vim/vim90"
+TARGET_DIR=""
 
 if [ -d "$VIM80_DIR" ]; then
-    TARGET_DIR = VIM80_DIR
+    TARGET_DIR="$VIM80_DIR"
 fi
 if [ -d "$VIM90_DIR" ]; then
-    TARGET_DIR = VIM90_DIR
+    TARGET_DIR="$VIM90_DIR"
 fi
 
 if [ -z "$TARGET_DIR" ]; then
