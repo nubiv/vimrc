@@ -37,7 +37,7 @@ else
 fi
 
 # Set up NerdTree
-NERDTREE_DIR=~/.vim/pack/vendor/pack/start/nerdtree
+NERDTREE_DIR=~/.vim/pack/vendor/start/nerdtree
 
 if [ -d "$NERDTREE_DIR" ]; then
     echo "NerdTree pack already exists."
