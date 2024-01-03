@@ -10,6 +10,8 @@ curl https://raw.githubusercontent.com/nubiv/vimrc/main/.vimrc >> ~/.vimrc
 if [ $? -ne 0 ]; then
     echo "Failed to download vimrc. Exiting without making changes."
     exit 1
+else
+    echo "Vimrc downloaded successfully."
 fi
 
 VIM80_DIR="/usr/share/vim/vim80"
@@ -38,12 +40,18 @@ fi
 
 
 # Set up NerdTree
-git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
-if [ $? -eq 0 ]; then
-    vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
-    echo "NerdTree setup done."
+NERDTREE_DIR="~/.vim/pack/vendor/pack/start/nerdtree"
+
+if [ -d "$NERDTREE_DIR" ]; then
+    echo "NerdTree pack already exists."
 else
-    echo "Failed to set up NerdTree."
+    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+    if [ $? -eq 0 ]; then
+        vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+        echo "NerdTree setup done."
+    else
+        echo "Failed to set up NerdTree."
+    fi
 fi
 
 echo "Completed Vim configuration successfully! Enjoy :-)"
