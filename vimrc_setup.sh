@@ -51,10 +51,12 @@ NERDTREE_DIR=~/.vim/pack/vendor/pack/start/nerdtree
 
 if [ -d "$NERDTREE_DIR" ]; then
     echo "NerdTree pack already exists."
+    vim -u NONE -c "helptags $NERDTREE_DIR/doc" -c q
+    echo "NerdTree setup done."
 else
-    git clone https://github.com/preservim/nerdtree.git ~/.vim/pack/vendor/start/nerdtree
+    git clone https://github.com/preservim/nerdtree.git "$NERDTREE_DIR"
     if [ $? -eq 0 ]; then
-        vim -u NONE -c "helptags ~/.vim/pack/vendor/start/nerdtree/doc" -c q
+        vim -u NONE -c "helptags $NERDTREE_DIR/doc" -c q
         echo "NerdTree setup done."
     else
         echo "Failed to set up NerdTree."
