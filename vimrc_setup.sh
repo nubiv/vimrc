@@ -23,13 +23,13 @@ MG_VIM_PATH="$COLOR_DIR/mountaineer-grey.vim"
 eval mkdir -p "$COLOR_DIR"
 if [ -f "$MG_VIM_PATH" ]; then
     echo "Theme mountaineer-grey scheme already exists."
-    eval sed -i 's/torte/mountaineer-grey/g' "$VIMRC_PATH"
+    eval sed -i '' -e 's/torte/mountaineer-grey/g' "$VIMRC_PATH"
     echo "Theme mountaineer-grey activated."
 else
     eval curl https://raw.githubusercontent.com/TheNiteCoder/mountaineer.vim/master/colors/mountaineer-grey.vim >> "$MG_VIM_PATH"
     if [ $? -eq 0 ]; then
         echo "Theme mountaineer-grey downloaded successfully."
-        eval sed -i 's/torte/mountaineer-grey/g' "$VIMRC_PATH"
+        eval sed -i '' -e 's/torte/mountaineer-grey/g' "$VIMRC_PATH"
         echo "Theme mountaineer-grey activated."
     else
         echo "Failed to download theme mountaineer-grey."
